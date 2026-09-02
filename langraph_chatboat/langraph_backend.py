@@ -30,23 +30,11 @@ graph.add_edge(START,'chat_node')
 graph.add_edge('chat_node',END)
 chatboat = graph.compile(checkpointer=checkpointer)
 
-if __name__ == "__main__":
-    thread_id = "1"
 
-    while True:
-        user_message = input("Type here")
+chatboat.stream(
+   {'message':[HumanMessage(content="Hello")]},
+   config={"configurable":{"thread_id":'thread-1'}},
+   stream_mode='messages'
+)
 
-        if user_message.lower() in [
-            "exit",
-            "bye",
-            "quit"
-        ]:
-            break
-
-        response = chatboat.invoke(
-            {"message":[HumanMessage(content=user_message)]},
-            config={"configurable":{"thread_id":thread_id}}
-        )
-
-        print(response["message"][-1].content)
 print("Backend imported")
