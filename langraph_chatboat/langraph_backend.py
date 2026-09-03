@@ -7,6 +7,8 @@ import operator
 from langchain_core.messages import SystemMessage, HumanMessage,BaseMessage
 from langgraph.checkpoint.memory import MemorySaver
 
+CONFIG={'configurable':{'thread_id':'thread-1'}}
+
 load_dotenv()
 
 from langgraph.graph.message import add_messages
